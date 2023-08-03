@@ -11,7 +11,7 @@ const crearUsuario = async(req, res = response) => {
         let usuario = await Usuario.findOne({ email });
 
         if( usuario ){
-            return res.json({
+            return res.status(400).json({
                 ok: false,
                 msg: 'El correo introducido ya fue utilizado'
             })
@@ -54,7 +54,7 @@ const loginUsuario = async(req, res = response) => {
         const usuario = await Usuario.findOne({ email });
 
         if( !usuario ){
-            return res.json({
+            return res.status(400).json({
                 ok: false,
                 msg: 'El correo no ha sido utilizado para ningun usuario'
             })
