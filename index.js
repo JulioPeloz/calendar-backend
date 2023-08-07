@@ -22,6 +22,11 @@ app.use( express.json() );
 app.use('/api/auth', require('./routes/auth')); //todo lo que el archivo auth.js de la carpeta routes exporte, lo va a habilitar en la ruta /api/auth 
 app.use('/api/events', require('./routes/events'));
 
+//Peticiones que no son a la carpeta publica, se regresa el index de la linea 16
+app.get('*', (req, res) => {
+    res.sendFile( __dirname + '/public/index.html');
+})
+
 
 //Escuchar peticiones
 app.listen(process.env.PORT, () => { // Aquí hacemos referencia al archivo.env a la variable PORT
